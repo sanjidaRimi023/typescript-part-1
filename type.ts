@@ -6,8 +6,8 @@
 let a = [1, 2, 3, 4, 5];
 let b = a;
 
-b.pop();  //last digit delete
-
+b.pop(); //last digit delete
+console.log(b);
 /* 
 If we try to delete the last element of "b", like this:
 b.pop(); // b = [1, 2, 3, 4]
@@ -24,3 +24,47 @@ NOTE: {}, [], and () are reference types.
 Any modification to a child (element/property) in the reference 
 will reflect in the parent as well.
 */
+
+let char = ["a", "b", "c", "d"];
+let char2 = char;
+char2.pop();
+console.log(char2);
+
+let decimalNum = [1.3, 3.4, 5.6, 7]
+let decimalNum2 = decimalNum;
+decimalNum2.push(3)
+console.log(decimalNum2);
+
+
+// Primitive Type Example
+
+let money: number = 20;        // number
+let name: string = 'rimi';     // string
+let isSingle: boolean = true;  // boolean
+console.log(money, name, isSingle); // 20 'rimi' true
+
+/*
+Difference between Primitive and Reference Types:
+
+- Primitive types (number, string, boolean, null, undefined, symbol) are copied **by value**. 
+  This means when you assign one variable to another, a **new copy** is created.
+  
+- Reference types (objects, arrays, functions) are copied **by reference**. 
+  When you assign one variable to another, both variables point to the **same memory location**.
+*/
+
+// Primitive Example:
+let number: number = 12;
+let number2: number = number;
+
+number2 = 15;  // changing number2 doesn't affect number
+console.log(number);  // 12
+console.log(number2); // 15
+
+// Reference Example:
+let a1 = [1, 2, 3];
+let b1 = a1;
+
+b1.push(4); // modifying b also affects a
+console.log(a1); // [1, 2, 3, 4]
+console.log(b1); // [1, 2, 3, 4]

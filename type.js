@@ -3,8 +3,7 @@
 // Reference Type Example
 var a = [1, 2, 3, 4, 5];
 var b = a;
-b.pop(); // sorting b will also affect a
-console.log(b);
+b.pop(); //last digit delete
 /*
 If we try to delete the last element of "b", like this:
 b.pop(); // b = [1, 2, 3, 4]
@@ -17,7 +16,11 @@ are **reference types**. When you assign "a" to "b",
 both "a" and "b" point to the same memory location.
 So changing the content of "b" affects "a" as well.
 
-NOTE: {}, [], and functions are reference types.
+NOTE: {}, [], and () are reference types.
 Any modification to a child (element/property) in the reference
 will reflect in the parent as well.
 */
+var char = ["a", "b", "c", "d"];
+var char2 = char;
+char2.pop();
+console.log(char2);
