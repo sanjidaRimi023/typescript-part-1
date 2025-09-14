@@ -50,6 +50,20 @@ It allows **static typing**, **strict checks**, and supports **modern features**
 
 ---
 
+## Reference Types (`{}`, `[]`, `()`)
+
+-   **What is it?** This refers to how data is stored in memory. Primitives (`string`, `number`) are stored by **value** (you get a copy). Reference types (`object`, `array`, `function`) are stored by **reference** (you get a pointer to the original).
+-   **Why is it important?** Understanding this prevents bugs. If you change a copied reference type, you are also changing the original, which might be an unexpected side effect.
+-   **When to be aware of it?** Always, but especially when passing objects or arrays to functions. If the function modifies that object, it modifies the original one outside the function too.
+    ```typescript
+    let person1 = { name: "Rimi" };
+    let person2 = person1; // person2 now POINTS to the same object as person1
+
+    person2.name = "Sanjida"; // We modified the object through person2
+
+    console.log(person1.name); // Outputs: "Sanjida" (The original was changed!)
+    ```
+
 ## Primitive Types (The Basic Building Blocks)
 
 ### `string`, `number`, & `boolean`
@@ -173,17 +187,3 @@ It allows **static typing**, **strict checks**, and supports **modern features**
     ```
 
 ---
-
-## Reference Types (`{}`, `[]`, `()`)
-
--   **What is it?** This refers to how data is stored in memory. Primitives (`string`, `number`) are stored by **value** (you get a copy). Reference types (`object`, `array`, `function`) are stored by **reference** (you get a pointer to the original).
--   **Why is it important?** Understanding this prevents bugs. If you change a copied reference type, you are also changing the original, which might be an unexpected side effect.
--   **When to be aware of it?** Always, but especially when passing objects or arrays to functions. If the function modifies that object, it modifies the original one outside the function too.
-    ```typescript
-    let person1 = { name: "Rimi" };
-    let person2 = person1; // person2 now POINTS to the same object as person1
-
-    person2.name = "Sanjida"; // We modified the object through person2
-
-    console.log(person1.name); // Outputs: "Sanjida" (The original was changed!)
-    ```
