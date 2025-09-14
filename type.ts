@@ -96,3 +96,27 @@ let arr4: number[] = [1, 2, 3, 3];
 / Basically it says: "Are you crazy? I already know arr4 should only have numbers"*/
 
 
+// Tuples in TypeScript
+/* 
+Tuples are like arrays, but with a twist: 
+- In normal arrays, you can put numbers, strings, objects in any order.
+- In tuples, **you define exactly what type goes at each position**.
+*/
+
+// Example: a tuple with a string first, number second
+
+let tuplesArr: [string, number] = ["rimi", 34];
+
+//Correct: string first, number second
+console.log(tuplesArr[0]); // "rimi"
+console.log(tuplesArr[1]); // 34
+
+// Wrong: number first, string second
+// let tuplesArr: [string, number] = [34, "rimi"];
+// TypeScript will throw an error: 
+// "Type 'number' is not assignable to type 'string'"
+
+// Tuples are like a strict seat assignment in a bus:
+// Seat 1 → string
+// Seat 2 → number
+// If anyone sits in the wrong seat, TypeScript will stop you
