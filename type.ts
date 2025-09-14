@@ -68,25 +68,23 @@ b1.push(4); // modifying b also affects a
 console.log(a1); // [1, 2, 3, 4]
 console.log(b1); // [1, 2, 3, 4]
 
-
-
-// TypeScript is very curious about your variable types 
+// TypeScript is very curious about your variable types
 
 // Array Examples
 
-let arr = [1, 2, 3, 3]; 
+let arr = [1, 2, 3, 3];
 // TypeScript automatically infers this as number[] (array of numbers)
 
-let arr2 = [1, 2, 3, 3, "rimi"]; 
-// TypeScript infers this as (number | string)[] 
+let arr2 = [1, 2, 3, 3, "rimi"];
+// TypeScript infers this as (number | string)[]
 // → array of numbers OR strings
 
-let arr3 = [1, 2, 3, 3, { friendName: "badhon" }]; 
+let arr3 = [1, 2, 3, 3, { friendName: "badhon" }];
 // TypeScript infers this as (number | { friendName: string })[]
 // → array of numbers OR objects with friendName as string
 
 //If you want strict type control
-let arr4: number[] = [1, 2, 3, 3]; 
+let arr4: number[] = [1, 2, 3, 3];
 // Only numbers are allowed
 
 /* If you try this:
@@ -94,7 +92,6 @@ let arr4: number[] = [1, 2, 3, 3];
 =>TypeScript will throw an error:
 =>"Argument of type 'string' is not assignable to parameter of type 'number'."
 / Basically it says: "Are you crazy? I already know arr4 should only have numbers"*/
-
 
 // Tuples in TypeScript
 /* 
@@ -113,10 +110,145 @@ console.log(tuplesArr[1]); // 34
 
 // Wrong: number first, string second
 // let tuplesArr: [string, number] = [34, "rimi"];
-// TypeScript will throw an error: 
+// TypeScript will throw an error:
 // "Type 'number' is not assignable to type 'string'"
 
 // Tuples are like a strict seat assignment in a bus:
 // Seat 1 → string
 // Seat 2 → number
 // If anyone sits in the wrong seat, TypeScript will stop you
+
+// "enumeration" short form of Enum
+
+// Enums = a way to give friendly names to numbers or string values
+
+// Imagine about your relationship status
+
+enum RelationshipStatus {
+  Single,
+  Dating,
+  Engaged,
+  Married,
+}
+
+// By default:
+// Single = 0
+// Dating = 1
+// Engaged = 2
+// Married = 3
+
+let myStatus: RelationshipStatus = RelationshipStatus.Single;
+
+console.log(myStatus); // 1
+console.log(RelationshipStatus[myStatus]); // "Dating"
+
+// You can also use string enum for readability
+enum StatusString {
+  Single = "SINGLE",
+  Dating = "DATING",
+  Engaged = "ENGAGED",
+  Married = "MARRIED",
+}
+
+let yourStatus: StatusString = StatusString.Dating;
+
+console.log(yourStatus); // "ENGAGED"
+
+// A real life example about enum
+// Imagine you are working in a company where you deal with website status codes
+// Instead of remembering 404, 500, 200 etc...
+// You can use enum to make it easier to understand
+
+enum StatusCode {
+  Success = 200, // means everything is fine
+  NotFound = 404, // page not found
+  Unauthorized = 401, // user is not authorized
+  ServerError = 500, // something wrong on the server
+}
+
+// Now you can use it like this
+let currentStatus: StatusCode = StatusCode.NotFound;
+
+console.log(currentStatus);
+// Output: 404 (but instead of writing 404 directly,
+// we used a readable name `StatusCode.NotFound`)
+
+// Another example:
+if (currentStatus === StatusCode.NotFound) {
+  console.log("Oops..!The page is not found!");
+} else if (currentStatus === StatusCode.ServerError) {
+  console.log("Oh no..!Server crashed!");
+} else {
+  console.log("All good");
+}
+
+// any
+
+// 'any' means TypeScript won’t check the type.
+// It's like saying: "Bro, don’t stress me with types."
+
+let randomValue: any = "Hello";
+randomValue = 123; // works
+randomValue = true; // works
+console.log(randomValue); // can be anything
+
+// unknown
+
+// 'unknown' is like 'any' but safer.
+// You must check its type before using.
+
+let mystery: unknown = "Developer";
+mystery = 42;
+
+// console.log(mystery.toUpperCase()); ERROR
+// TypeScript: "Wait! What if it's not a string?"
+
+// // if we set a variable type 'any', TypeScript shuts down its brain.
+// It says: "Bro, my brain is not brain-ing right now, do whatever you want!"
+// It will allow anything without warnings.
+
+if (typeof mystery === "string") {
+  console.log(mystery.toUpperCase()); // Safe now
+}
+
+// void
+
+// Used for functions that don’t return anything.
+
+function greet(): void {
+  console.log("Hello programmer");
+}
+greet(); // Prints but doesn’t return anything
+
+// undefined
+
+// Means no value is assigned.
+
+let notDefined: undefined = undefined;
+console.log(notDefined); //prints undefined
+
+// null
+// Example: Imagine you have a database with a user:
+// name: "rimi", address: "Bangladesh"
+// But if you search for owner: "chatgpt"
+// and there is no user in the database with that owner,
+// the database will return 'null'. 
+// In other words, null represents an **intentional empty value**.
+
+let emptyValue: null = null;
+console.log(emptyValue); // prints null
+
+// never
+
+// A function that never returns.
+// Either throws an error or runs forever.
+
+function throwError(message: string): never {
+  throw new Error(message); //crashes, never returns
+}
+
+// function infiniteLoop(): never {
+//   while (true) {
+//     console.log("Looping forever");
+//   }
+// }
