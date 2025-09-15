@@ -1,4 +1,4 @@
-# TypeScript Part 1: The Fundamentals 🚀
+# TypeScript Part 1: The Fundamentals
 
 Welcome to my repository for learning TypeScript! This file explains the basic types and concepts I've covered in Part 1. My goal is to explain each topic simply so that anyone can understand it.
 
@@ -124,7 +124,7 @@ It allows **static typing**, **strict checks**, and supports **modern features**
 
 ## Special Types
 
-### `any` 🚨
+### `any`
 
 -   **What is it?** A type that tells TypeScript to **turn off all type-checking** for a variable. You can assign anything to it and do anything with it without getting an error from TypeScript.
 -   **Why use it?** As an "escape hatch" when you are working with dynamic data, untyped third-party libraries, or slowly migrating old JavaScript code to TypeScript.
@@ -135,7 +135,7 @@ It allows **static typing**, **strict checks**, and supports **modern features**
     flexible.nonExistentMethod(); // Also no error from TypeScript, but will crash when you run the code!
     ```
 
-### `unknown` ✅
+### `unknown` 
 
 -   **What is it?** A safer alternative to `any`. It represents a value whose type you do not know ahead of time.
 -   **Why use it?** It's safe because it forces you to check the type of the variable before you can perform any operations on it. This prevents runtime errors.
